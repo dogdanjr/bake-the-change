@@ -216,6 +216,23 @@
   .detail li { margin-bottom: 0.55rem; font-size: 1.02rem; }
   .detail li:last-child { margin-bottom: 0; }
 
+  .pitch-line {
+    margin: 0 0 0.9rem;
+    padding-left: 1rem;
+    border-left: 3px solid var(--card-line);
+    font-size: 1rem;
+  }
+  .pitch-line:last-child { margin-bottom: 0; }
+  .pitch-line b {
+    font-family: -apple-system, "Segoe UI", sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-size: 0.68rem;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+
   .stat-pair {
     display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
     background: var(--card); border: 1px solid var(--card-line); border-radius: 3px;
@@ -283,7 +300,7 @@
       <a class="tile" data-phase="pre" href="#ws-1">
         <div class="tile-top"><span class="tile-num">WORKSTREAM 1</span><span class="tile-phase">Pre-event</span></div>
         <h3>Sponsorship &amp; Fundraising Partners</h3>
-        <p>Local businesses become cash and cheerleaders.</p>
+        <p>Walking in and asking for the owner, in person.</p>
         <span class="tile-go">View workstream →</span>
       </a>
       <a class="tile" data-phase="pre" href="#ws-2">
@@ -354,19 +371,49 @@
       <h2>Sponsorship &amp; Fundraising Partners</h2>
       <span class="detail-phase">Pre-event</span>
     </div>
-    <p class="owner"><b>Owner:</b> Daniel (outreach automation) + Constance (relationships)</p>
+    <p class="owner"><b>Owner:</b> Constance (relationships, pitch) + Daniel (routes, tracking, target list)</p>
+
     <div class="detail-block">
-      <h4>The work</h4>
+      <h4>The core idea</h4>
       <ul>
-        <li>Build a target list of local Rexburg/Idaho Falls businesses via directory scrape</li>
-        <li>Personalized sponsorship letters — tax write-off angle, logo on signage &amp; social — reusing the scrape → rank → personalize workflow already proven on Upwork outreach</li>
-        <li>Tiered sponsorship levels ($100 / $500 / $1,000+) with matching visibility benefits</li>
-        <li>Shared pledge tracker so nothing falls through</li>
+        <li>This is won in person, not by letter or email — Constance's read is that a volunteer walking in and asking for the owner directly outperforms anything automated</li>
+        <li>Volunteers work assigned <b>routes</b> — a set of nearby businesses, a day, a time window</li>
+        <li>Every stop gets logged, whether it's a yes, a no, or "come back next week" — nobody re-visits the same business twice by accident</li>
+        <li>Anyone not reached (or non-committal) gets a <b>follow-up visit or call one week later</b></li>
+        <li>A scraped/researched target list still matters — it's just feeding routes for volunteers to walk, not an automated letter blast</li>
       </ul>
     </div>
+
+    <div class="detail-block">
+      <h4>The system — who's going where</h4>
+      <ul>
+        <li>Rachel has Route A, Monday, 10am–1pm — three downtown stops</li>
+        <li>Michael has Route B, Tuesday, 1pm–4pm — the restaurant row</li>
+        <li>Routes are grouped by geography so a volunteer can walk or make one short drive, not criss-cross town</li>
+        <li>A shared tracker (template below) is the single source of truth — who's assigned where, who's been visited, what happened, when the follow-up is due</li>
+      </ul>
+    </div>
+
+    <div class="detail-block">
+      <h4>The pitch (30–45 seconds)</h4>
+      <p class="pitch-line"><b>Walking in:</b> "Hi, I'm volunteering with Bake the Change — a bake sale happening September 12th right here in Rexburg. Is the owner or manager around? I'd love to talk to them directly if I can."</p>
+      <p class="pitch-line"><b>If they're available:</b> "Over 50 local bakeries are donating baked goods for one day to raise $65,000 for reusable hygiene kits for girls in Africa — right now a lot of girls miss school every month and eventually drop out for lack of basic supplies. One kit lasts 3–5 years and keeps a girl in class. We're asking local businesses to sponsor the event — your logo goes on our signage and social media, and it's tax-deductible. Even if sponsoring isn't the right fit today, we'd love to leave this for you to look over."</p>
+      <p class="pitch-line"><b>If they're not available:</b> "No problem — can I leave this with you? It has everything they'd need, plus how to reach us. I'll check back in about a week."</p>
+      <p class="pitch-line"><b>Always:</b> log the stop before moving on — even a "not interested" is useful, it keeps the next volunteer from knocking on the same door.</p>
+    </div>
+
+    <div class="detail-block">
+      <h4>Ready-to-use templates</h4>
+      <ul>
+        <li><a href="https://github.com/dogdanjr/bake-the-change/blob/master/templates/volunteer-routes.csv" target="_blank" rel="noopener">Volunteer Routes tracker</a> — who, which route, which day, which businesses (seeded with an example)</li>
+        <li><a href="https://github.com/dogdanjr/bake-the-change/blob/master/templates/business-tracker.csv" target="_blank" rel="noopener">Business follow-up log</a> — seeded with real downtown Rexburg businesses as a starting list (addresses still need confirming)</li>
+        <li>Both open directly, or download and import into Google Sheets to share with volunteers live</li>
+      </ul>
+    </div>
+
     <div class="stat-pair">
       <div><span class="f-k">Timeline</span><span class="f-v mono">Weeks 1–6, ongoing</span></div>
-      <div><span class="f-k">Success looks like</span><span class="f-v">A real chunk of $65k secured before a single cookie sells</span></div>
+      <div><span class="f-k">Success looks like</span><span class="f-v">Every downtown business has been walked in on, logged, and followed up — not just mailed a letter</span></div>
     </div>
     <div class="detail-nav">
       <a href="#hub"><span class="dir">Hub</span>All workstreams</a>
