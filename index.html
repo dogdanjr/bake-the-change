@@ -1,0 +1,584 @@
+<title>Bake the Change — Strategic Plan</title>
+<meta name="description" content="Hub + 8 workstream views for the Rexburg bake sale fundraiser" />
+<style>
+  :root {
+    --paper: #fbf6ee;
+    --ink: #2b1d14;
+    --ink-faint: #6b5d4f;
+    --card: #f3e9d8;
+    --card-line: #e2d3ba;
+    --accent: #8c1f2b;
+    --accent-ink: #fff8f0;
+    --accent-2: #c98a2c;
+    --accent-2-ink: #2b1d14;
+    --rule: #ddccae;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #1c140f;
+      --ink: #f3e9d8;
+      --ink-faint: #b5a48d;
+      --card: #2a1f17;
+      --card-line: #3d2e21;
+      --accent: #e2707a;
+      --accent-ink: #2b1d14;
+      --accent-2: #e6ac54;
+      --accent-2-ink: #2b1d14;
+      --rule: #3d2e21;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #1c140f; --ink: #f3e9d8; --ink-faint: #b5a48d;
+    --card: #2a1f17; --card-line: #3d2e21; --accent: #e2707a;
+    --accent-ink: #2b1d14; --accent-2: #e6ac54; --accent-2-ink: #2b1d14; --rule: #3d2e21;
+  }
+  :root[data-theme="light"] {
+    --paper: #fbf6ee; --ink: #2b1d14; --ink-faint: #6b5d4f;
+    --card: #f3e9d8; --card-line: #e2d3ba; --accent: #8c1f2b;
+    --accent-ink: #fff8f0; --accent-2: #c98a2c; --accent-2-ink: #2b1d14; --rule: #ddccae;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--paper); color: var(--ink); }
+  body {
+    font-family: Georgia, "Iowan Old Style", "Palatino Linotype", "Book Antiqua", serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  .sans { font-family: -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif; }
+  .mono { font-family: ui-monospace, "SFMono-Regular", Consolas, "Liberation Mono", monospace; font-variant-numeric: tabular-nums; }
+
+  .page { max-width: 840px; margin: 0 auto; padding: 3.5rem 1.5rem 5rem; }
+  @media (max-width: 640px) { .page { padding: 2.25rem 1.1rem 3.5rem; } }
+
+  .view { display: none; }
+  .view.active { display: block; animation: rise 0.4s cubic-bezier(0.22, 1, 0.36, 1) both; }
+  @keyframes rise { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) { .view.active { animation: none; } }
+
+  a { color: var(--accent); }
+  ::selection { background: var(--accent-2); color: var(--accent-2-ink); }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+  /* ---- hub header ---- */
+  header.hub-head {
+    border-bottom: 3px solid var(--ink);
+    padding-bottom: 1.75rem;
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: -apple-system, "Segoe UI", sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--accent);
+    margin: 0 0 0.9rem;
+  }
+  h1 {
+    font-size: clamp(2.1rem, 5.5vw, 2.9rem);
+    line-height: 1.08;
+    margin: 0 0 0.6rem;
+    font-weight: 700;
+    text-wrap: balance;
+    letter-spacing: -0.01em;
+  }
+  .subhead { margin: 0 0 1.4rem; color: var(--ink-faint); font-size: 1.05rem; max-width: 62ch; }
+  .meta-strip { display: flex; flex-wrap: wrap; gap: 0.5rem 1.75rem; }
+  .meta-item { font-family: -apple-system, "Segoe UI", sans-serif; }
+  .meta-item .k {
+    display: block; text-transform: uppercase; letter-spacing: 0.1em;
+    font-size: 0.66rem; font-weight: 700; color: var(--ink-faint); margin-bottom: 0.15rem;
+  }
+  .meta-item .v {
+    font-size: 1.05rem; font-weight: 700;
+    font-family: ui-monospace, Consolas, monospace; font-variant-numeric: tabular-nums;
+  }
+
+  .section-label {
+    font-family: -apple-system, "Segoe UI", sans-serif;
+    text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.72rem; font-weight: 700;
+    color: var(--ink-faint); margin: 0 0 1rem; display: flex; align-items: center; gap: 0.6rem;
+  }
+  .section-label::after { content: ""; flex: 1; height: 1px; background: var(--rule); }
+
+  /* ---- timeline strip ---- */
+  .timeline { margin-bottom: 3rem; }
+  .timeline-track {
+    display: flex; border-radius: 3px; overflow: hidden; border: 1px solid var(--card-line);
+    font-family: -apple-system, "Segoe UI", sans-serif;
+  }
+  .t-seg {
+    padding: 0.65rem 0.7rem; font-size: 0.74rem; font-weight: 600;
+    color: var(--accent-2-ink); background: var(--accent-2);
+    border-right: 1px solid var(--paper); flex: 1; text-align: center;
+  }
+  .t-seg:last-child { border-right: none; }
+  .t-seg.now { background: var(--accent); color: var(--accent-ink); }
+  .t-seg.day { background: var(--ink); color: var(--paper); }
+  .t-seg.post { background: var(--ink-faint); color: var(--paper); }
+
+  /* ---- hub tiles ---- */
+  .hub-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.85rem;
+    margin-bottom: 3rem;
+  }
+  @media (max-width: 560px) { .hub-grid { grid-template-columns: 1fr; } }
+
+  .tile {
+    display: block;
+    background: var(--card);
+    border: 1px solid var(--card-line);
+    border-left: 5px solid var(--accent-2);
+    border-radius: 2px;
+    padding: 1.1rem 1.2rem;
+    text-decoration: none;
+    color: var(--ink);
+  }
+  .tile[data-phase="post"] { border-left-color: var(--ink-faint); }
+  .tile:hover { border-left-color: var(--accent); border-color: var(--accent); }
+  .tile:hover .tile-go { transform: translateX(3px); }
+
+  .tile-top {
+    display: flex; justify-content: space-between; align-items: baseline; gap: 0.5rem;
+  }
+  .tile-num {
+    font-family: ui-monospace, Consolas, monospace;
+    font-size: 0.64rem; font-weight: 700; letter-spacing: 0.03em; color: var(--accent);
+  }
+  .tile-phase {
+    font-family: -apple-system, "Segoe UI", sans-serif;
+    text-transform: uppercase; letter-spacing: 0.07em; font-size: 0.6rem; font-weight: 700;
+    color: var(--ink-faint); white-space: nowrap;
+  }
+  .tile h3 { font-size: 1.12rem; margin: 0.3rem 0 0.4rem; font-weight: 700; text-wrap: balance; }
+  .tile p {
+    font-family: -apple-system, "Segoe UI", sans-serif;
+    margin: 0 0 0.7rem; color: var(--ink-faint); font-size: 0.88rem; line-height: 1.4;
+  }
+  .tile-go {
+    font-family: -apple-system, "Segoe UI", sans-serif;
+    font-size: 0.78rem; font-weight: 700; color: var(--accent);
+    display: inline-block; transition: transform 0.15s ease;
+  }
+  @media (prefers-reduced-motion: reduce) { .tile-go { transition: none; } }
+
+  /* ---- synthesis (hub) ---- */
+  .synthesis { border-top: 3px solid var(--ink); padding-top: 1.5rem; }
+  .synthesis h2 { font-size: 1.15rem; margin: 0 0 0.75rem; }
+  .synthesis p { max-width: 68ch; margin: 0 0 0.9rem; color: var(--ink-faint); }
+  .synthesis p:last-child { margin-bottom: 0; }
+  .synthesis b { color: var(--ink); }
+
+  /* ---- detail view ---- */
+  .back-link {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    font-family: -apple-system, "Segoe UI", sans-serif;
+    font-size: 0.86rem; font-weight: 600; text-decoration: none;
+    margin-bottom: 1.75rem;
+  }
+  .back-link:hover { text-decoration: underline; }
+
+  .detail-head { margin-bottom: 1.75rem; }
+  .detail-num {
+    font-family: ui-monospace, Consolas, monospace;
+    font-size: 0.74rem; font-weight: 700; letter-spacing: 0.04em; color: var(--accent);
+    display: block; margin-bottom: 0.4rem;
+  }
+  .detail-head h2 {
+    font-size: clamp(1.7rem, 4.5vw, 2.25rem);
+    margin: 0 0 0.6rem; font-weight: 700; text-wrap: balance; letter-spacing: -0.01em;
+  }
+  .detail-phase {
+    font-family: -apple-system, "Segoe UI", sans-serif;
+    text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.68rem; font-weight: 700;
+    color: var(--paper); background: var(--ink); padding: 0.25rem 0.6rem; border-radius: 2px;
+    display: inline-block;
+  }
+  [data-phase="post"] .detail-phase { background: var(--ink-faint); }
+
+  .owner {
+    font-family: -apple-system, "Segoe UI", sans-serif; font-size: 0.92rem;
+    color: var(--ink-faint); margin: 0 0 1.75rem;
+  }
+  .owner b { color: var(--ink); font-weight: 600; }
+
+  .detail-block { margin-bottom: 1.75rem; }
+  .detail-block h4 {
+    font-family: -apple-system, "Segoe UI", sans-serif;
+    text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.68rem; font-weight: 700;
+    color: var(--ink-faint); margin: 0 0 0.8rem;
+  }
+  .detail ul { margin: 0; padding-left: 1.2rem; }
+  .detail li { margin-bottom: 0.55rem; font-size: 1.02rem; }
+  .detail li:last-child { margin-bottom: 0; }
+
+  .stat-pair {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+    background: var(--card); border: 1px solid var(--card-line); border-radius: 3px;
+    padding: 1.1rem 1.3rem; margin-bottom: 2.25rem;
+  }
+  @media (max-width: 520px) { .stat-pair { grid-template-columns: 1fr; } }
+  .stat-pair .f-k {
+    font-family: -apple-system, "Segoe UI", sans-serif;
+    text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.64rem; font-weight: 700;
+    color: var(--ink-faint); display: block; margin-bottom: 0.3rem;
+  }
+  .stat-pair .f-v { font-size: 0.96rem; }
+  .stat-pair .f-v.mono { font-size: 1rem; font-weight: 700; }
+
+  .detail-nav {
+    display: flex; justify-content: space-between; align-items: center;
+    border-top: 1px solid var(--rule); padding-top: 1.25rem; margin-top: 2rem;
+    font-family: -apple-system, "Segoe UI", sans-serif;
+  }
+  .detail-nav a {
+    text-decoration: none; font-size: 0.86rem; font-weight: 600;
+    display: flex; flex-direction: column; gap: 0.15rem;
+  }
+  .detail-nav a:hover { text-decoration: underline; }
+  .detail-nav .dir {
+    text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.62rem;
+    font-weight: 700; color: var(--ink-faint);
+  }
+  .detail-nav .next-link { text-align: right; align-items: flex-end; }
+</style>
+
+<div class="page">
+
+  <!-- ============ HUB ============ -->
+  <section id="hub" class="view active">
+    <header class="hub-head">
+      <p class="eyebrow">Strategic plan · hub</p>
+      <h1>Bake the Change</h1>
+      <p class="subhead">
+        Working title, pending Constance's final call. A bake sale run by 50+ Rexburg-area
+        bakeries, funding reusable feminine hygiene kits so girls in Africa can stay in school.
+      </p>
+      <div class="meta-strip">
+        <div class="meta-item"><span class="k">Event date</span><span class="v">Sept 12, 2026</span></div>
+        <div class="meta-item"><span class="k">Location</span><span class="v sans" style="font-weight:700;font-size:1.05rem;">Cal Ranch, Rexburg</span></div>
+        <div class="meta-item"><span class="k">Goal</span><span class="v">$65,000</span></div>
+        <div class="meta-item"><span class="k">Funds</span><span class="v">4,000+ kits</span></div>
+        <div class="meta-item"><span class="k">Weeks out</span><span class="v">~9.5</span></div>
+      </div>
+    </header>
+
+    <p class="section-label">Now → event → after</p>
+    <div class="timeline">
+      <div class="timeline-track">
+        <div class="t-seg now">Now · Wk 1–3<br />Outreach starts</div>
+        <div class="t-seg">Wk 4–6<br />Bakeries + sponsors lock in</div>
+        <div class="t-seg">Wk 7–9<br />Logistics + push</div>
+        <div class="t-seg day">Sept 12<br />Event day</div>
+        <div class="t-seg post">+2 wks<br />Report back</div>
+      </div>
+    </div>
+
+    <p class="section-label">Eight workstreams — click into any of them</p>
+    <div class="hub-grid">
+      <a class="tile" data-phase="pre" href="#ws-1">
+        <div class="tile-top"><span class="tile-num">WORKSTREAM 1</span><span class="tile-phase">Pre-event</span></div>
+        <h3>Sponsorship &amp; Fundraising Partners</h3>
+        <p>Local businesses become cash and cheerleaders.</p>
+        <span class="tile-go">View workstream →</span>
+      </a>
+      <a class="tile" data-phase="pre" href="#ws-2">
+        <div class="tile-top"><span class="tile-num">WORKSTREAM 2</span><span class="tile-phase">Pre-event</span></div>
+        <h3>Bakery Recruitment &amp; Coordination</h3>
+        <p>Fifty ovens, one shared plan.</p>
+        <span class="tile-go">View workstream →</span>
+      </a>
+      <a class="tile" data-phase="pre" href="#ws-3">
+        <div class="tile-top"><span class="tile-num">WORKSTREAM 3</span><span class="tile-phase">Pre-event → Day-of</span></div>
+        <h3>Volunteers &amp; Day-of Staffing</h3>
+        <p>Enough hands that nothing's scrambling by 8am.</p>
+        <span class="tile-go">View workstream →</span>
+      </a>
+      <a class="tile" data-phase="pre" href="#ws-4">
+        <div class="tile-top"><span class="tile-num">WORKSTREAM 4</span><span class="tile-phase">Pre-event</span></div>
+        <h3>Marketing &amp; Social Media</h3>
+        <p>A countdown loud enough to fill the parking lot.</p>
+        <span class="tile-go">View workstream →</span>
+      </a>
+      <a class="tile" data-phase="pre" href="#ws-5">
+        <div class="tile-top"><span class="tile-num">WORKSTREAM 5</span><span class="tile-phase">Pre-event → Day-of</span></div>
+        <h3>Logistics &amp; Operations</h3>
+        <p>Tables, cash boxes, and zero surprises.</p>
+        <span class="tile-go">View workstream →</span>
+      </a>
+      <a class="tile" data-phase="pre" href="#ws-6">
+        <div class="tile-top"><span class="tile-num">WORKSTREAM 6</span><span class="tile-phase">Pre-event → Day-of</span></div>
+        <h3>Storytelling &amp; Mission</h3>
+        <p>Why a $5 cookie funds a girl's education.</p>
+        <span class="tile-go">View workstream →</span>
+      </a>
+      <a class="tile" data-phase="pre" href="#ws-7">
+        <div class="tile-top"><span class="tile-num">WORKSTREAM 7</span><span class="tile-phase">Pre-event</span></div>
+        <h3>Community Partnerships</h3>
+        <p>Borrowing reach we don't already have.</p>
+        <span class="tile-go">View workstream →</span>
+      </a>
+      <a class="tile" data-phase="post" href="#ws-8">
+        <div class="tile-top"><span class="tile-num">WORKSTREAM 8</span><span class="tile-phase">Post-event</span></div>
+        <h3>Reporting &amp; Momentum</h3>
+        <p>Closing the loop so next year sells itself.</p>
+        <span class="tile-go">View workstream →</span>
+      </a>
+    </div>
+
+    <div class="synthesis">
+      <h2>Why eight workstreams, not one list</h2>
+      <p>
+        Each workstream can move on its own — sponsorship outreach doesn't wait on volunteer
+        recruitment, and social content doesn't wait on logistics. They only need to
+        converge twice: <b>Workstream 1's sponsor logos feed Workstream 5's signage</b>, and
+        <b>Workstream 6's mission materials feed both Workstream 4's content and Workstream 5's
+        table signage</b>. Everything else runs in parallel.
+      </p>
+      <p>
+        The name itself is still open — <b>Bake the Change</b> is the working title,
+        one of ten options Constance will choose from.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ WORKSTREAM 1 ============ -->
+  <section id="ws-1" class="view detail" data-phase="pre">
+    <a class="back-link" href="#hub">← Bake the Change</a>
+    <div class="detail-head">
+      <span class="detail-num">WORKSTREAM 1 OF 8</span>
+      <h2>Sponsorship &amp; Fundraising Partners</h2>
+      <span class="detail-phase">Pre-event</span>
+    </div>
+    <p class="owner"><b>Owner:</b> Daniel (outreach automation) + Constance (relationships)</p>
+    <div class="detail-block">
+      <h4>The work</h4>
+      <ul>
+        <li>Build a target list of local Rexburg/Idaho Falls businesses via directory scrape</li>
+        <li>Personalized sponsorship letters — tax write-off angle, logo on signage &amp; social — reusing the scrape → rank → personalize workflow already proven on Upwork outreach</li>
+        <li>Tiered sponsorship levels ($100 / $500 / $1,000+) with matching visibility benefits</li>
+        <li>Shared pledge tracker so nothing falls through</li>
+      </ul>
+    </div>
+    <div class="stat-pair">
+      <div><span class="f-k">Timeline</span><span class="f-v mono">Weeks 1–6, ongoing</span></div>
+      <div><span class="f-k">Success looks like</span><span class="f-v">A real chunk of $65k secured before a single cookie sells</span></div>
+    </div>
+    <div class="detail-nav">
+      <a href="#hub"><span class="dir">Hub</span>All workstreams</a>
+      <a class="next-link" href="#ws-2"><span class="dir">Next</span>Bakery Recruitment →</a>
+    </div>
+  </section>
+
+  <!-- ============ WORKSTREAM 2 ============ -->
+  <section id="ws-2" class="view detail" data-phase="pre">
+    <a class="back-link" href="#hub">← Bake the Change</a>
+    <div class="detail-head">
+      <span class="detail-num">WORKSTREAM 2 OF 8</span>
+      <h2>Bakery Recruitment &amp; Coordination</h2>
+      <span class="detail-phase">Pre-event</span>
+    </div>
+    <p class="owner"><b>Owner:</b> Constance</p>
+    <div class="detail-block">
+      <h4>The work</h4>
+      <ul>
+        <li>Finalize the 50+ bakery roster — confirm each commitment and item count</li>
+        <li>Assign table/booth space and morning drop-off windows</li>
+        <li>One central point-of-contact list so questions don't stall</li>
+      </ul>
+    </div>
+    <div class="stat-pair">
+      <div><span class="f-k">Timeline</span><span class="f-v mono">Ongoing → locked wk 8</span></div>
+      <div><span class="f-k">Success looks like</span><span class="f-v">50+ bakeries confirmed, ~3,000 items committed</span></div>
+    </div>
+    <div class="detail-nav">
+      <a href="#ws-1"><span class="dir">Back</span>← Sponsorship</a>
+      <a class="next-link" href="#ws-3"><span class="dir">Next</span>Volunteers →</a>
+    </div>
+  </section>
+
+  <!-- ============ WORKSTREAM 3 ============ -->
+  <section id="ws-3" class="view detail" data-phase="pre">
+    <a class="back-link" href="#hub">← Bake the Change</a>
+    <div class="detail-head">
+      <span class="detail-num">WORKSTREAM 3 OF 8</span>
+      <h2>Volunteers &amp; Day-of Staffing</h2>
+      <span class="detail-phase">Pre-event → Day-of</span>
+    </div>
+    <p class="owner"><b>Owner:</b> Constance + a volunteer coordinator</p>
+    <div class="detail-block">
+      <h4>The work</h4>
+      <ul>
+        <li>Recruit setup/breakdown crew, cashiers, runners, greeters</li>
+        <li>BYU-Idaho student clubs and local congregations as a natural volunteer pool</li>
+        <li>Written shift schedule covering 8am–4pm with no coverage gaps</li>
+      </ul>
+    </div>
+    <div class="stat-pair">
+      <div><span class="f-k">Timeline</span><span class="f-v mono">Weeks 4–9</span></div>
+      <div><span class="f-k">Success looks like</span><span class="f-v">Every shift staffed, nobody scrambling morning-of</span></div>
+    </div>
+    <div class="detail-nav">
+      <a href="#ws-2"><span class="dir">Back</span>← Bakery Recruitment</a>
+      <a class="next-link" href="#ws-4"><span class="dir">Next</span>Marketing →</a>
+    </div>
+  </section>
+
+  <!-- ============ WORKSTREAM 4 ============ -->
+  <section id="ws-4" class="view detail" data-phase="pre">
+    <a class="back-link" href="#hub">← Bake the Change</a>
+    <div class="detail-head">
+      <span class="detail-num">WORKSTREAM 4 OF 8</span>
+      <h2>Marketing &amp; Social Media</h2>
+      <span class="detail-phase">Pre-event</span>
+    </div>
+    <p class="owner"><b>Owner:</b> Daniel (content engine) + Constance (local voice)</p>
+    <div class="detail-block">
+      <h4>The work</h4>
+      <ul>
+        <li>Weekly Instagram/TikTok countdown content from now through Sept 12</li>
+        <li>Local Facebook groups, plus Rexburg/Idaho Falls press and radio outreach</li>
+        <li>Behind-the-scenes content from participating bakeries — real faces sell better than flyers</li>
+      </ul>
+    </div>
+    <div class="stat-pair">
+      <div><span class="f-k">Timeline</span><span class="f-v mono">Starts now, weekly</span></div>
+      <div><span class="f-k">Success looks like</span><span class="f-v">Local awareness converts into people showing up</span></div>
+    </div>
+    <div class="detail-nav">
+      <a href="#ws-3"><span class="dir">Back</span>← Volunteers</a>
+      <a class="next-link" href="#ws-5"><span class="dir">Next</span>Logistics →</a>
+    </div>
+  </section>
+
+  <!-- ============ WORKSTREAM 5 ============ -->
+  <section id="ws-5" class="view detail" data-phase="pre">
+    <a class="back-link" href="#hub">← Bake the Change</a>
+    <div class="detail-head">
+      <span class="detail-num">WORKSTREAM 5 OF 8</span>
+      <h2>Logistics &amp; Operations</h2>
+      <span class="detail-phase">Pre-event → Day-of</span>
+    </div>
+    <p class="owner"><b>Owner:</b> Constance</p>
+    <div class="detail-block">
+      <h4>The work</h4>
+      <ul>
+        <li>Venue confirmed at Cal Ranch — canopies, tables, chairs booked</li>
+        <li>Card/cash handling sorted (Square reader or equivalent), change fund ready</li>
+        <li>Signage and banners, including sponsor logos from Workstream 1</li>
+      </ul>
+    </div>
+    <div class="stat-pair">
+      <div><span class="f-k">Timeline</span><span class="f-v mono">Weeks 6–9</span></div>
+      <div><span class="f-k">Success looks like</span><span class="f-v">Zero operational surprises the morning of</span></div>
+    </div>
+    <div class="detail-nav">
+      <a href="#ws-4"><span class="dir">Back</span>← Marketing</a>
+      <a class="next-link" href="#ws-6"><span class="dir">Next</span>Storytelling →</a>
+    </div>
+  </section>
+
+  <!-- ============ WORKSTREAM 6 ============ -->
+  <section id="ws-6" class="view detail" data-phase="pre">
+    <a class="back-link" href="#hub">← Bake the Change</a>
+    <div class="detail-head">
+      <span class="detail-num">WORKSTREAM 6 OF 8</span>
+      <h2>Storytelling &amp; Mission Communication</h2>
+      <span class="detail-phase">Pre-event → Day-of</span>
+    </div>
+    <p class="owner"><b>Owner:</b> Daniel + Life Together Alliance / Village Threads</p>
+    <div class="detail-block">
+      <h4>The work</h4>
+      <ul>
+        <li>Honest, specific materials on why this matters — the real numbers: ~30% of girls skip school monthly without supplies, $1.55/day tea-picking is the alternative, one kit lasts 3–5 years</li>
+        <li>Table signage and flyers that lead with the mission, not just the price list</li>
+        <li>A short video or table-side testimonial if either partner org can provide one</li>
+      </ul>
+    </div>
+    <div class="stat-pair">
+      <div><span class="f-k">Timeline</span><span class="f-v mono">Weeks 3–7</span></div>
+      <div><span class="f-k">Success looks like</span><span class="f-v">Buyers know what their $5 cookie is actually funding</span></div>
+    </div>
+    <div class="detail-nav">
+      <a href="#ws-5"><span class="dir">Back</span>← Logistics</a>
+      <a class="next-link" href="#ws-7"><span class="dir">Next</span>Community Partnerships →</a>
+    </div>
+  </section>
+
+  <!-- ============ WORKSTREAM 7 ============ -->
+  <section id="ws-7" class="view detail" data-phase="pre">
+    <a class="back-link" href="#hub">← Bake the Change</a>
+    <div class="detail-head">
+      <span class="detail-num">WORKSTREAM 7 OF 8</span>
+      <h2>Community &amp; Institutional Partnerships</h2>
+      <span class="detail-phase">Pre-event</span>
+    </div>
+    <p class="owner"><b>Owner:</b> Constance + Daniel</p>
+    <div class="detail-block">
+      <h4>The work</h4>
+      <ul>
+        <li>Local schools, churches, and BYU-Idaho clubs as amplifiers — not just for volunteers, for reach</li>
+        <li>Cross-promotion through each of the 50+ bakeries' own existing customer bases</li>
+      </ul>
+    </div>
+    <div class="stat-pair">
+      <div><span class="f-k">Timeline</span><span class="f-v mono">Weeks 2–8</span></div>
+      <div><span class="f-k">Success looks like</span><span class="f-v">Partner orgs sharing the event to audiences we don't already have</span></div>
+    </div>
+    <div class="detail-nav">
+      <a href="#ws-6"><span class="dir">Back</span>← Storytelling</a>
+      <a class="next-link" href="#ws-8"><span class="dir">Next</span>Reporting →</a>
+    </div>
+  </section>
+
+  <!-- ============ WORKSTREAM 8 ============ -->
+  <section id="ws-8" class="view detail" data-phase="post">
+    <a class="back-link" href="#hub">← Bake the Change</a>
+    <div class="detail-head">
+      <span class="detail-num">WORKSTREAM 8 OF 8</span>
+      <h2>Reporting &amp; Momentum</h2>
+      <span class="detail-phase">Post-event</span>
+    </div>
+    <p class="owner"><b>Owner:</b> Daniel (tracking) + Constance</p>
+    <div class="detail-block">
+      <h4>The work</h4>
+      <ul>
+        <li>Final tally, plus thank-yous to every sponsor, bakery, volunteer, and donor</li>
+        <li>Public report-back — kits funded, photos, real impact numbers</li>
+        <li>Write down what worked while it's fresh, since this can repeat and grow next year the way the hurricane-relief sale did ($3k goal, $27k raised)</li>
+      </ul>
+    </div>
+    <div class="stat-pair">
+      <div><span class="f-k">Timeline</span><span class="f-v mono">Event week → +2 weeks</span></div>
+      <div><span class="f-k">Success looks like</span><span class="f-v">Every supporter thanked, next year already easier to sell</span></div>
+    </div>
+    <div class="detail-nav">
+      <a href="#ws-7"><span class="dir">Back</span>← Community Partnerships</a>
+      <a class="next-link" href="#hub"><span class="dir">Done</span>Back to hub →</a>
+    </div>
+  </section>
+
+</div>
+
+<script>
+  (function () {
+    var views = document.querySelectorAll(".view");
+    function route() {
+      var id = location.hash.replace("#", "") || "hub";
+      var found = false;
+      views.forEach(function (v) {
+        var match = v.id === id;
+        v.classList.toggle("active", match);
+        if (match) found = true;
+      });
+      if (!found) document.getElementById("hub").classList.add("active");
+      window.scrollTo(0, 0);
+    }
+    window.addEventListener("hashchange", route);
+    route();
+  })();
+</script>
