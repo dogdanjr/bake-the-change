@@ -13,4 +13,4 @@ logistics, storytelling, community partnerships, reporting) as clickable
 tiles — click into any one for its full timeline, task list, and success
 metric.
 
-Live at: _(added after first deploy)_
+Live at: https://dogdanjr.github.io/bake-the-change/
